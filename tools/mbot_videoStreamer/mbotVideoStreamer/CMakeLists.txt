@@ -10,3 +10,4 @@ add_executable(mbotVideoStreamer ${SRC_LIST})
 
 target_link_libraries (mbotVideoStreamer ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(mbotVideoStreamer mbotCore mbotVideoCapture)
+install(TARGETS mbotVideoStreamer DESTINATION "/usr/local/bin")
