@@ -1,0 +1,16 @@
+socat tcp:localhost:10500 - | mplayer -demuxer rawvideo -rawvideo w=640:h=480:format=yuy2 -
+socat tcp:localhost:10100 - | mplayer -demuxer rawvideo -rawvideo w=640:h=480:format=yuy2 -
+
+./mibot_videoStreamer | mplayer -demuxer rawvideo -rawvideo w=640:h=480:format=yuy2 -
+
+socat tcp:192.168.0.17:10200 - | mplayer -cache 256 -fps 30 -demuxer h265es -
+
+/opt/vc/bin/raspivid  -w 800 -h 600 -t 0 -o - | socat - tcp:192.168.0.4:10100
+
+socat tcp:192.168.0.49:10100 - | mplayer -nocache -fps 35 -framedrop -demuxer h264es -
+socat tcp-l:10100 - | mplayer -nocache -fps 35 -framedrop -demuxer h264es -
+
+sudo ./rover_video_service port:10500 vdevice:/dev/video0 bcount:3 frame_width:640 frame_height:480 frame_fmt:H264 log_level:DEBUG log_std:1 raw_stream:1
+
+
+video_service port:10200 vdevice:/dev/video0 bcount:3 frame_width:1280 frame_height:720 frame_fmt:H264 log_level:DEBUG log_std:1 raw_stream:0
