@@ -1,0 +1,11 @@
+[Unit]
+Description=Video Streamer
+
+[Service]
+Type=simple
+User=alarm
+WorkingDirectory=/home/alarm
+ExecStart=/usr/local/bin/mbotVideoStreamer port:10200 vdevice:/dev/video0 bcount:3 frame_width:1280 frame_height:720 frame_fmt:H264 log_level:DEBUG log_std:1 raw_stream:0
+
+[Install]
+WantedBy=multi-user.target
